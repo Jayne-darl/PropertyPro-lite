@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Sign Up</title>
+    <title>Log In</title>
     <link
       rel="stylesheet"
       type="text/css"
@@ -28,14 +28,14 @@
             <a class="logo-link" href="./index.html">PropertyPro-lite</a>
           </h1>
           <!-- <div class="dropdown">
-            <button class="navbar-toggler" type="button">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </div> -->
+                      <button class="navbar-toggler" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
+                    </div> -->
           <!-- <ul class="navbar-nav row col-4 ">
-            <li class="nav-item"><a class="nav-link" href="#">Log In</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Sign Up</a></li>
-          </ul> -->
+                      <li class="nav-item"><a class="nav-link" href="#">Log In</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#">Sign Up</a></li>
+                    </ul> -->
         </div>
       </nav>
     </header>
@@ -44,63 +44,28 @@
       style="background-image:url(./assets/images/home.jpg);"
     >
       <form action="" class="column form-layout ">
-        <h4 class="header">Register</h4>
-        <input
-          type="text"
-          name="name"
-          class="signup-field"
-          id="name"
-          placeholder="Name"
-          required
-        />
-        <input
-          type="text"
-          name="addres"
-          placeholder="Address"
-          class="signup-field"
-          id="address"
-          required
-        />
-        <input
-          type="number"
-          name="phonenumber"
-          placeholder="Phone Number"
-          class="signup-field"
-          id="phoneNumber"
-          required
-        />
+        <h4 class="header">Log In</h4>
         <input
           type="email"
           name="email"
           placeholder="Email"
           class="signup-field"
-          id="email"
           required
         />
-        <p class="warning form-validate"></p>
         <input
           type="password"
           name="password"
           placeholder="Password"
           class="signup-field"
-          id="password"
           required
         />
-        <p class="password-val form-validate"></p>
-        <input
-          type="password"
-          name="password"
-          placeholder="Repeat Password"
-          class="signup-field"
-          id="confirmPassword"
-          required
-        />
-        <p class="message form-validate"></p>
-        <button type="submit" class="btn btn-success mt-2" id="createAccount">
-          Create Account
+        <button type="submit" class="btn btn-success mt-2" id="logIn">
+          <a href="./user-dashboard.html" width="100%"> Log In</a>
         </button>
-        <p class="mx-auto mt-3">Already have an account?</p>
-        <p class="mx-auto "><a class="link" href="./log-in.html">Log In</a></p>
+        <p class="mx-auto mt-3">Don't have an account?</p>
+        <p class="mx-auto">
+          <a class="link" href="./sign-up.html">Create Account</a>
+        </p>
       </form>
     </main>
     <footer class="footer">
@@ -124,6 +89,5 @@
         </span>
       </div>
     </footer>
-    <script src="./assets/js/signUp.js"></script>
   </body>
 </html>
