@@ -239,6 +239,18 @@ img[class] {
   height: 300px;
   object-fit: cover;
 }
+.detail-img-div {
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#detail-img {
+  width: 300px;
+  height: 300px;
+  border: none;
+  object-fit: cover;
+}
 .price {
   position: absolute;
   width: 85%;
@@ -246,6 +258,7 @@ img[class] {
   font-size: 1.2rem;
   color: #fff;
   background-color: transparent;
+  display: -ms-flexbox;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -403,6 +416,10 @@ img[class] {
     width: 90%;
     margin-left: 3.5rem;
   }
+  #detail-img {
+    width: 350px;
+    height: 350px;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -413,6 +430,10 @@ img[class] {
     width: 297px;
     height: 52px;
     border-radius: none;
+  }
+  #detail-img {
+    width: 450px;
+    height: 350px;
   }
 }
 .foreground {
@@ -430,6 +451,7 @@ img[class] {
   z-index: 1;
 }
 .column {
+  display: -ms-flexbox;
   display: flex;
   flex-direction: column;
 }
@@ -650,6 +672,92 @@ button a:focus {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+.mapouter {
+  position: relative;
+  text-align: left;
+  height: 550px;
+  width: 480px;
+}
+.gmap_canvas {
+  overflow: hidden;
+  background: none !important;
+  height: 550px;
+  width: 480px;
+}
+.footer2 {
+  position: relative;
+  bottom: 0;
+}
+.detail-container {
+  border: none;
+  font-family: "Times New Roman", Times, serif;
+  margin-top: 2rem;
+  line-height: 1.5;
+  text-align: center;
+}
+.features {
+  margin-top: 1rem;
+}
+.info-card .desc,
+.detail-head {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #621d3f;
+}
+.detail-head {
+  font-size: 2.8rem;
+}
+.detail-type,
+.location {
+  font-size: 1.5rem;
+}
+[data-class] {
+  width: 15px;
+  height: 15px;
+  margin-left: 1.5rem;
+}
+[data-class*="fav"] {
+  filter: invert(100%);
+  filter: sepia(100%);
+}
+@media (min-width: 576px) {
+}
+@media (min-width: 768px) {
+  .mapouter {
+    height: 650px;
+    width: 300px;
+  }
+  .gmap_canvas {
+    height: 650px;
+    width: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+  .gmap_canvas {
+    height: 650px;
+    width: 500px;
+  }
+  .mapouter {
+    height: 650px;
+    width: 500px;
+  }
+}
+@media (min-width: 1200px) {
+  .gmap_canvas {
+    height: 650px;
+    width: 700px;
+  }
+  .mapouter {
+    height: 650px;
+    width: 700px;
+  }
+  .detail-container {
+    margin-top: 2rem;
+    text-align: center;
+  }
+}
+
 /* Column media queries from bootstrap */
 .col-1,
 .col-2,
