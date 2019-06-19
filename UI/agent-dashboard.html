@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Agent Dashboard</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="./assets/css/style.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="container col-12">
+          <h1 class="navbar-logo col-8 col-md-5 ">
+            <a class="logo-link" href="./index.html">PropertyPro-lite</a>
+          </h1>
+          <div class="header-search col-md-4">
+            <select id="search-text" type="text">
+              <option value="volvo">Type</option>
+              <option value="one">A bedroom Apartment</option>
+              <option value="two">2 bedroom Apartment</option>
+              <option value="three">3 bedroom Apartment</option>
+              <option value="four">4 bedroom Apartment</option>
+              <option value="flat">Mini Flat</option>
+            </select>
+            <input type="button" name="search-button" id="search-button" />
+          </div>
+          <div class="dropdown img-dropdown col-2 col-md-2">
+            <img
+              id="img-thumbnail"
+              src="https://avatars1.githubusercontent.com/u/42867330?s=400&u=6da66e2d5b1918f86c51770518bbbb34936b29e4&v=4"
+            />
+            <div class="dropdown-content">
+              <p><a href="./index.html">Log Out</a></p>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div id="property-list">
+        <h3 id="heading" class="heading">My Posted Properties</h3>
+        <div
+          style=" position: relative; top: -50px; display: flex;
+        flex-direction: row;
+  justify-content: flex-end
+        "
+        >
+          <img
+            id="upload-img"
+            src="./assets/images/upload.png"
+            title="Post a prooerty"
+          />
+        </div>
+        <div class="row">
+          <div class="outer-card col-12 col-md-6 col-lg-4">
+            <!--.card-->
+            <div class="card ">
+              <img
+                src="./assets/images/four-bedroom.jpg"
+                class="img-thumbnails"
+              />
+              <p class="price"><span>#34000</span></p>
+              <div class="info-card">
+                <h4>Newly built four bedroom apartment</h4>
+                <p>For Sale</p>
+                <p class="details"></p>
+                <div>
+                  <a
+                    href="./property-details.html"
+                    class="button-view"
+                    data-id="1"
+                    >Update Property</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="outer-card col-12 col-md-6 col-lg-4">
+            <!--.card-->
+            <div class="card ">
+              <img
+                src="./assets/images/five-bedroom.jpg"
+                class="img-thumbnails"
+              />
+              <p class="price"><span>#34000</span></p>
+              <div class="info-card">
+                <h4>Newly built four bedroom apartment</h4>
+                <p>For Sale</p>
+                <p class="details"></p>
+                <div>
+                  <a
+                    href="./property-details.html"
+                    class="button-view"
+                    data-id="1"
+                    >Update Property</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="outer-card col-12 col-md-6 col-lg-4">
+            <!--.card-->
+            <div class="card ">
+              <img src="./assets/images/barn.jpg" class="img-thumbnails" />
+              <p class="price"><span>#34000</span></p>
+              <div class="info-card">
+                <h4>Newly built four bedroom apartment</h4>
+                <p>For Sale</p>
+                <p class="details"></p>
+                <div>
+                  <a
+                    href="./property-details.html"
+                    class="button-view"
+                    data-id="1"
+                    >Update Property</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+          <div class="outer-card col-12 col-md-6 col-lg-4">
+            <!--.card-->
+            <div class="card">
+              <img src="./assets/images/mansion.jpg" class="img-thumbnails" />
+              <p class="price"><span>#34000</span></p>
+              <div class="info-card">
+                <h4>Newly built four bedroom apartment</h4>
+                <p>For Sale</p>
+                <p class="details"></p>
+                <div>
+                  <a
+                    href="./property-details.html"
+                    class="button-view"
+                    data-id="1"
+                    >Update Property</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="outer-card col-12 col-md-6 col-lg-4">
+            <!--.card-->
+            <div class="card">
+              <img
+                src="./assets/images/two-bedroom.jpg"
+                class="img-thumbnails"
+              />
+              <p class="price"><span>#34000</span></p>
+              <div class="info-card">
+                <h4>Newly built four bedroom apartment</h4>
+                <p>For Sale</p>
+                <p class="details"></p>
+                <div>
+                  <a
+                    href="./property-details.html"
+                    class="button-view"
+                    data-id="1"
+                    >Update Property</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="outer-card col-12 col-md-6 col-lg-4">
+            <!--.card-->
+            <div class="card ">
+              <img
+                src="./assets//images/luxury-home.jpg"
+                class="img-thumbnails"
+              />
+              <p class="price"><span>#34000</span></p>
+              <div class="info-card">
+                <h4>Newly built four bedroom apartment</h4>
+                <p>For Sale</p>
+                <p class="details"></p>
+                <div>
+                  <a
+                    href="./property-details.html"
+                    class="button-view"
+                    data-id="1"
+                    >Update Property</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="copyright2">
+        <span>
+          Copyright©2019 Jane Onwumere
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
