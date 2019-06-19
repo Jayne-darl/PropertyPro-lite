@@ -371,6 +371,9 @@ img[class] {
     margin: 3rem 0;
     font-size: 2rem;
   }
+  #heading {
+    margin: 2rem 0 1rem 0;
+  }
 }
 @media (min-width: 992px) {
   .container {
@@ -719,6 +722,10 @@ button a:focus {
 [data-class*="fav"] {
   filter: invert(100%);
   filter: sepia(100%);
+}
+#upload-img {
+  width: 35px;
+  height: 35px;
 }
 @media (min-width: 576px) {
 }
