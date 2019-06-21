@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Property</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="./assets/css/style.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="container col-12">
+          <h1 class="navbar-logo col-8 col-md-5 ">
+            <a class="logo-link" href="./index.html">PropertyPro-lite</a>
+          </h1>
+          <div class="header-search col-md-4">
+            <select id="search-text" type="text">
+              <option value="volvo">Type</option>
+              <option value="one">A bedroom Apartment</option>
+              <option value="two">2 bedroom Apartment</option>
+              <option gitvalue="three">3 bedroom Apartment</option>
+              <option value="four">4 bedroom Apartment</option>
+              <option value="flat">Mini Flat</option>
+            </select>
+            <input type="button" name="search-button" id="search-button" />
+          </div>
+          <div class="dropdown img-dropdown col-2 col-md-2">
+            <img
+              id="img-thumbnail"
+              src="https://avatars1.githubusercontent.com/u/42867330?s=400&u=6da66e2d5b1918f86c51770518bbbb34936b29e4&v=4"
+            /> 
+            <div class="dropdown-content">
+              <p><a href="./index.html">Log Out</a></p>
+            </div>
+          </div>
+      </nav>
+    </header>
+    <main>
+    <div class="row">
+        <div class="mapouter">
+            <div class="gmap_canvas">
+                <iframe
+                width="650"
+                height="650"
+                id="gmap_canvas"
+                src="https://maps.google.com/maps?q=lagos&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                frameborder="0"
+                scrolling="yes"
+                marginheight="0"
+                marginwidth="0"
+                ></iframe
+                ><a href="https://www.bitgeeks.net/embed-google-map/"></a>
+            </div>
+        </div>
+     
+        <div class="card detail-container col-12 col-md-7 col-lg-6">
+                <h3 class="detail-head"> Property Detail</h3>
+                <textarea class="detail-type form-field form-control">Two bedroom apartment for sale</textarea>
+                <textarea style="font-weight: bold" class="detail-price">#45 000</textarea>
+                <textarea class="location form-field form-control">Surulere, Lagos</textarea>
+                <div class="detail-img-div">
+                    <img  src="./assets//images/luxury-home.jpg"
+                id="detail-img">
+                </div>
+                <div class="info-card">
+                <h4 class="desc">Description</h4>
+                <section>
+                    <div class="row">
+                        <label class="col-12 col-md-3 control-label">Bedrooms</label>
+                        <div class="col-12 col-md-8 radiobtn">
+                            <input type="radio" name="bedrooms" value="1" />
+                            <label>1</label>
+                            <input type="radio" name="bedrooms" value="2" />
+                            <label>2</label>
+                            <input type="radio" name="bedrooms" value="3" />
+                            <label>3</label>
+                            <input type="radio" name="bedrooms" value="4" />
+                            <label>4</label>
+                            <input type="radio" name="bedrooms" value="5" />
+                            <label>5</label>
+                            <input type="radio" name="bedrooms" value="6" />
+                            <label>6+</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-12 col-md-3 control-label">Bathrooms</label>
+                        <div class="col-12 col-md-8 radiobtn">
+                            <input type="radio" name="bedroom" value="1" />
+                            <label>1</label>
+                            <input type="radio" name="bedroom" value="2" />
+                            <label>2</label>
+                            <input type="radio" name="bedroom" value="3" />
+                            <label>3</label>
+                            <input type="radio" name="bedroom" value="4" />
+                            <label>4</label>
+                            <input type="radio" name="bedroom" value="5" />
+                            <label>5</label>
+                            <input type="radio" name="bedroom" value="6" />
+                            <label>6+</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-12 col-md-3 control-label">Toilets</label>
+                        <div class="col-12 col-md-8 radiobtn">
+                            <input type="radio" name="toilet" value="1" />
+                            <label>1</label>
+                            <input type="radio" name="toilet" value="2" />
+                            <label>2</label>
+                            <input type="radio" name="toilet" value="3" />
+                            <label>3</label>
+                            <input type="radio" name="toilet" value="4" />
+                            <label>4</label>
+                            <input type="radio" name="toilet" value="5" />
+                            <label>5</label>
+                            <input type="radio" name="toilet" value="6" />
+                            <label>6+</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-12 col-md-3 control-label">Kitchen</label>
+                        <div class="col-12 col-md-5 radiobtn">
+                            <input type="radio" name="bedrooms" value="1" />
+                            <label>1</label>
+                            <input type="radio" name="kitchen" value="2" />
+                            <label>2</label>
+                            <input type="radio" name="kitchen" value="3" />
+                            <label>3</label>
+                        </div>
+                    </div>
+                </section>
+                <textarea rows="4"
+                    cols="40"
+                    class="form-field form-control">The rooms are all ensuite, the house is located in a serene neighbourhood, 24/7 electricity, a standby 3400megaH generator, constant water supply. Accessible roads to commercial areas</textarea>
+                <label class="control-label">Sold?</label> <input type="checkbox" />
+                </div>
+                <button type="submit" class="btn btn-success mt-4" id="updateProperty">
+                        Submit
+                </button>
+          
+        </div>
+    </div>
+</main>
+    <footer class="footer2 footer">
+      <div class="copyright2">
+        <span>
+          Copyright©2019 Jane Onwumere
+        </span>
+      </div>
+    </footer>
+    <script src="./assets/js/updateProperty.js"></script>
+  </body>
+</html>
