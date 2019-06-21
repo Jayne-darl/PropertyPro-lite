@@ -280,6 +280,11 @@ img[class] {
   margin-top: 3rem;
   margin-bottom: 1rem;
 }
+.info-card section .row,
+.info-card section .radiobtn {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+}
 .button-view {
   background-color: #78244c;
   border-radius: 10px;
@@ -658,9 +663,14 @@ button a:focus {
   #property-form {
     width: 80%;
   }
+  .info-card .form-control,
+  .card .form-control {
+    width: 97%;
+  }
   .form-control {
     width: 120%;
   }
+
   fieldset .header {
     font-size: 1.7rem;
   }
@@ -771,8 +781,9 @@ button a:focus {
   color: #621d3f;
 }
 .detail-head {
-  font-size: 2.8rem;
+  font-size: 1.9rem;
 }
+
 .detail-type,
 .location {
   font-size: 1.5rem;
@@ -800,6 +811,9 @@ button a:focus {
   .gmap_canvas {
     height: 650px;
     width: 300px;
+  }
+  .detail-head {
+    font-size: 2.8rem;
   }
 }
 
