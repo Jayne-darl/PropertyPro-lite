@@ -2,10 +2,11 @@ const email = document.querySelector(".email");
 password = document.querySelector(".password");
 logInButton = document.querySelector("#logIn");
 
-logInButton.addEventListeners("click", logIn);
+logInButton.addEventListener("click", logIn);
 
-function logIn() {
+function logIn(e) {
+  e.preventDefault();
   if (email.value != "" && password.value != "") {
-    window.location.href = "./user-dashboard";
+    document.location.href = "./agent-dashboard.html";
   }
 }

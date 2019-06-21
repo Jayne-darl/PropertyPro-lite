@@ -471,6 +471,7 @@ img[class] {
   box-shadow: 0px 2px 2px 1px #ddd;
   /* transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; */
 }
+
 form .header {
   font-size: 1.7rem;
   font-family: "Times New Roman", Times, serif;
@@ -481,13 +482,38 @@ form .header {
   padding-top: 0;
   margin-bottom: 2rem;
 }
-.signup-field {
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+fieldset .header {
+  font-size: 1.5rem;
+  margin-bottom: 0.7rem;
+  margin-top: 2rem;
+  border-bottom: 0 none;
+  color: #78244c;
+}
+.form-field {
   padding: 1.2rem;
   margin: 0.5rem;
   font-family: fontAwesome;
   font-size: 1rem;
   border-radius: 0.5rem;
   border: 1px solid #ddd;
+}
+.form-control {
+  width: 100%;
+  padding: 0.85rem 0.5rem;
+  border-radius: 0.25rem;
+}
+.select-field {
+  margin: 0.5rem;
+  font-family: fontAwesome;
+  font-size: 1rem;
+  padding: 0;
+  height: 2.7rem;
 }
 .btn {
   display: inline-block;
@@ -603,6 +629,22 @@ button a:focus {
   margin-top: 1rem;
   margin-bottom: -1rem;
 }
+#property-form {
+  padding-top: 1.2rem;
+}
+.control-label {
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 1.2rem;
+}
+.radiobtn {
+  width: 100%;
+  margin-top: 1.2rem;
+  margin-bottom: 1rem;
+}
+.radiobtn input[type="radio"] {
+  margin-left: 0.5rem;
+}
 @media (min-width: 576px) {
   .form-layout {
     width: 90%;
@@ -612,6 +654,18 @@ button a:focus {
   .form-layout {
     width: 70%;
     padding: 2rem 2rem;
+  }
+  #property-form {
+    width: 80%;
+  }
+  .form-control {
+    width: 120%;
+  }
+  fieldset .header {
+    font-size: 1.7rem;
+  }
+  .radiobtn input[type="radio"] {
+    margin-left: 1rem;
   }
   .img-dropdown {
     width: 10%;
@@ -630,12 +684,18 @@ button a:focus {
     width: 50%;
     padding: 2.5rem 3.5rem;
   }
+  #property-form {
+    width: 75%;
+  }
 }
 
 @media (min-width: 1200px) {
   .form-layout {
     width: 40%;
     padding: 3.5rem 4.5rem;
+  }
+  #property-form {
+    width: 60%;
   }
   .dropdown-content {
     display: none;
@@ -645,6 +705,9 @@ button a:focus {
   .header-search {
     margin-top: 1rem;
     margin-bottom: 1rem;
+  }
+  .radiobtn input[type="radio"] {
+    margin-left: 1.4rem;
   }
 }
 

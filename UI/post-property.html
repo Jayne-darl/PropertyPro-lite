@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Post Property</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="./assets/css/style.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Cardo|Dancing+Script"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="container col-12">
+          <h1 class="navbar-logo col-8 col-md-5 ">
+            <a class="logo-link" href="./index.html">PropertyPro-lite</a>
+          </h1>
+          <div class="dropdown  col-2 col-md-2">
+            <img
+              id="img-thumbnail"
+              src="https://avatars1.githubusercontent.com/u/42867330?s=400&u=6da66e2d5b1918f86c51770518bbbb34936b29e4&v=4"
+            />
+            <div class="dropdown-content">
+              <p><a href="./index.html">Log Out</a></p>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <h3 class="heading">Post a Property</h3>
+      <form action="" class="column form-layout" id="property-form">
+        <fieldset>
+          <h4 class="header">Address</h4>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">State</label>
+            <div class="col-12 col-md-6">
+              <input
+                type="text"
+                name="state"
+                class="form-field form-control"
+                required
+              />
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">Locality</label>
+            <div class="col-12 col-md-6">
+              <input
+                type="text"
+                name="locality"
+                class="form-field form-control"
+                required
+              />
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">Street</label>
+            <div class="col-12 col-md-6">
+              <input
+                type="text"
+                name="Street"
+                class="form-field form-control"
+                required
+              />
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <h4 class="header">Price</h4>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">Price</label>
+            <div class="col-12 col-md-6">
+              <input
+                type="number"
+                name="price"
+                class="form-field form-control"
+                required
+              />
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">Duration</label>
+            <div class="col-12 col-md-6">
+              <select type="text" class="form-control select-field">
+                <option value="type" selected>Duration</option>
+                <option value="week">Per Week</option>
+                <option value="month">Per Month</option>
+                <option value="year">Per Year</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <h4 class="header">Description</h4>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">Title</label>
+            <div class="col-12 col-md-6">
+              <input
+                type="text"
+                name="title"
+                class="form-field form-control"
+                required
+              />
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">Purpose</label>
+            <div class="col-12 col-md-6 radiobtn">
+              <input type="radio" name="purpose" required />
+              <label class="">For Sale</label>
+              <input type="radio" name="purpose" required />
+              <label class="">For Rent</label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label"
+              >Type of Property</label
+            >
+            <div class="col-12 col-md-6">
+              <select type="text" class="form-control select-field">
+                <option value="type" selected>Type</option>
+                <option value="one">A bedroom Apartment</option>
+                <option value="two">2 bedroom Apartment</option>
+                <option value="three">3 bedroom Apartment</option>
+                <option value="four">4 bedroom Apartment</option>
+                <option value="flat">Mini Flat</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">Bedrooms</label>
+            <div class="col-12 col-md-6 radiobtn">
+              <input type="radio" name="bedrooms" value="1" />
+              <label>1</label>
+              <input type="radio" name="bedrooms" value="2" />
+              <label>2</label>
+              <input type="radio" name="bedrooms" value="3" />
+              <label>3</label>
+              <input type="radio" name="bedrooms" value="4" />
+              <label>4</label>
+              <input type="radio" name="bedrooms" value="5" />
+              <label>5</label>
+              <input type="radio" name="bedrooms" value="6" />
+              <label>6+</label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">Bathrooms</label>
+            <div class="col-12 col-md-6 radiobtn">
+              <input type="radio" name="bedroom" value="1" />
+              <label>1</label>
+              <input type="radio" name="bedroom" value="2" />
+              <label>2</label>
+              <input type="radio" name="bedroom" value="3" />
+              <label>3</label>
+              <input type="radio" name="bedroom" value="4" />
+              <label>4</label>
+              <input type="radio" name="bedroom" value="5" />
+              <label>5</label>
+              <input type="radio" name="bedroom" value="6" />
+              <label>6+</label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">Toilets</label>
+            <div class="col-12 col-md-6 radiobtn">
+              <input type="radio" name="toilet" value="1" />
+              <label>1</label>
+              <input type="radio" name="toilet" value="2" />
+              <label>2</label>
+              <input type="radio" name="toilet" value="3" />
+              <label>3</label>
+              <input type="radio" name="toilet" value="4" />
+              <label>4</label>
+              <input type="radio" name="toilet" value="5" />
+              <label>5</label>
+              <input type="radio" name="toilet" value="6" />
+              <label>6+</label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">Kitchen</label>
+            <div class="col-12 col-md-6 radiobtn">
+              <input type="radio" name="bedrooms" value="1" />
+              <label>1</label>
+              <input type="radio" name="kitchen" value="2" />
+              <label>2</label>
+              <input type="radio" name="kitchen" value="3" />
+              <label>3</label>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-12 col-md-4 control-label">Description</label>
+            <div class="col-12 col-md-6">
+              <textarea
+                rows="4"
+                cols="40"
+                class="form-field form-control"
+                required
+              >
+              </textarea>
+            </div>
+          </div>
+        </fieldset>
+        <button type="submit" class="btn btn-success mt-4" id="postProperty">
+          Submit
+        </button>
+      </form>
+    </main>
+    <script src="./assets/js/postProperty.js"></script>
+  </body>
+</html>
