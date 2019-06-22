@@ -208,7 +208,7 @@ a {
 } */
 #search-button {
   border: 0 none;
-  background: #78244c url(/UI/assets/images/search-solid.svg) center no-repeat;
+  background: #78244c url(../images/search-solid.svg) center no-repeat;
   background-size: 20px 20px;
   width: 45px;
   position: absolute;
@@ -230,6 +230,13 @@ a {
   margin: 2rem 0;
   font-size: 1.5rem;
   font-family: Arial, Helvetica, sans-serif;
+}
+.agent-post {
+  position: relative;
+  top: -50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 img[class] {
   width: 100%;
@@ -453,6 +460,7 @@ img[class] {
   z-index: 1;
 }
 .background {
+  background-image: url(../images/home.jpg);
   background-size: contain;
   overflow: hidden;
   position: relative;
@@ -771,6 +779,9 @@ button a:focus {
   line-height: 1.5;
   text-align: center;
 }
+.detail-price {
+  font-weight: bold;
+}
 .features {
   margin-top: 1rem;
 }
@@ -793,15 +804,14 @@ button a:focus {
   height: 15px;
   margin-left: 1.5rem;
 }
-[data-class*="fav"] {
-  filter: invert(100%);
-  filter: sepia(100%);
+[data-class*="img"] {
+  display: flex;
+  margin-left: 0;
+  /* justify-content: flex-start; */
 }
 #upload-img {
-  width: 35px;
-  height: 35px;
-}
-@media (min-width: 576px) {
+  width: 25px;
+  height: 25px;
 }
 @media (min-width: 768px) {
   .mapouter {
@@ -814,6 +824,10 @@ button a:focus {
   }
   .detail-head {
     font-size: 2.8rem;
+  }
+  #upload-img {
+    width: 35px;
+    height: 35px;
   }
 }
 
