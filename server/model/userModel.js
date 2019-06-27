@@ -23,13 +23,13 @@ class User {
        */
 
   static create(attr) {
-    const parcel = new User(attr);
-    User.table.push(parcel);
-    return parcel;
+    const user = new User(attr);
+    User.table.push(user);
+    return user;
   }
 
   /**
-     * @returns {object} all delivery user array
+     * @returns {object} all user array
      */
   static getAllUsers() {
     return User.table;

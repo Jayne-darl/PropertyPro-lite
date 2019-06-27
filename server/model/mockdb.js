@@ -56,15 +56,15 @@ const db = {
   property: [
     {
       id: 1,
-      // owner: users.id,
       status: 'available',
       price: 3000,
       state: 'Lagos',
       city: 'Surulere',
       address: '5 Irepodun Street',
       type: '2 bedroom',
-      created_on: new Date(),
       image_url: 'ght',
+      created_on: new Date(),
+      updated_at: '',
     },
   ],
 };
