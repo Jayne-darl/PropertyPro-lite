@@ -46,9 +46,6 @@ class User {
         return clientError(res, 404, 'status', 'error', 'message', 'User not found');
       }
       const comparePass = await Helper.comparePassword(user.password, password);
-      console.log(user.password);
-      console.log(password);
-      console.log(comparePass);
       if (!comparePass) {
         return clientError(res, 422, 'status', 'error', 'message', 'The password you provided is incorrect');
       }
