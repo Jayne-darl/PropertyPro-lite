@@ -2,9 +2,9 @@ import db from './mockdb';
 
 class Property {
   /**
-       * class constructor
-       * @param {object} attr
-      */
+   * class constructor
+   * @param {object} attr
+   */
   constructor(attr) {
     Property.count += 1;
     this.id = Property.count;
@@ -20,9 +20,9 @@ class Property {
   }
 
   /**
-       *
-       * @returns {object} user object
-       */
+   *
+   * @returns {object} user object
+   */
 
   static create(attr) {
     const advert = new Property(attr);
@@ -30,44 +30,44 @@ class Property {
     return advert;
   }
 
-  /**
-     * @returns {object} all delivery user array
-     */
-  static getAll() {
-    return Property.table;
-  }
+  //   /**
+  //      * @returns {object} all delivery user array
+  //      */
+  //   static getAll() {
+  //     return Property.table;
+  //   }
 
-  /**
-     * @param {id} user id
-     * @return {object} user with id
-     */
-  static getOne(id) {
-    return Property.table.find(advert => advert.id === id);
-  }
+  //   /**
+  //      * @param {id} user id
+  //      * @return {object} user with id
+  //      */
+  //   static getOne(id) {
+  //     return Property.table.find(advert => advert.id === id);
+  //   }
 
-  /**
-       * @param {id} Property id
-       * @param {object} data
-       */
-  static update(id, data) {
-    const advert = this.getOne(id);
-    const index = Property.table.indexOf(advert);
-    Property.table[index].status = data.status || advert.status;
-    Property.table[index].updated_at = new Date();
-    return Property.table[index];
-  }
+  //   /**
+  //        * @param {id} Property id
+  //        * @param {object} data
+  //        */
+  //   static update(id, data) {
+  //     const advert = this.getOne(id);
+  //     const index = Property.table.indexOf(advert);
+  //     Property.table[index].status = data.status || advert.status;
+  //     Property.table[index].updated_at = new Date();
+  //     return Property.table[index];
+  //   }
 
-  /**
- * @param {id} Property id
- */
-  static delete(id) {
-    const propertyIndex = this.getOne(id);
-    if (propertyIndex) {
-      Property.table.splice(propertyIndex, 1);
-      return true;
-    }
-    return false;
-  }
+  //   /**
+  //  * @param {id} Property id
+  //  */
+  //   static delete(id) {
+  //     const propertyIndex = this.getOne(id);
+  //     if (propertyIndex) {
+  //       Property.table.splice(propertyIndex, 1);
+  //       return true;
+  //     }
+  //     return false;
+  //   }
 }
 
 Property.table = db.property;

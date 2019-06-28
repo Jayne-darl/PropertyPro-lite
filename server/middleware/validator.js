@@ -3,12 +3,12 @@ import { clientError } from '../helper/httpResponse';
 
 class ValidateUser {
   /**
-                             * @method validateSignUpDetails
-                             * @description Validates details of the user upon sign up
-                             * @param {object} req - The Request Object
-                             * @param {object} res - The Response Object
-                             * @returns {object} JSON API Response
-                             */
+   * @method validateSignUpDetails
+   * @description Validates details of the user upon sign up
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @returns {object} JSON API Response
+   */
   static validateSignUpDetails(req, res, next) {
     const validate = {
       first_name: /^[a-zA-Z]+$/,
@@ -46,6 +46,14 @@ class ValidateUser {
     return next();
   }
 
+
+  /**
+   * @method validateLogInDetails
+   * @description Validates details of the user upon login
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @returns {object} JSON API Response
+   */
   static validateLoginDetails(req, res, next) {
     const {
       // eslint-disable-next-line camelcase
