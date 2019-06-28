@@ -2,9 +2,9 @@ import db from './mockdb';
 
 class User {
   /**
-       * class constructor
-       * @param {object} attr
-      */
+   * class constructor
+   * @param {object} attr
+   */
   constructor(attr) {
     User.count += 1;
     this.id = User.count;
@@ -18,9 +18,9 @@ class User {
   }
 
   /**
-       *
-       * @returns {object} user object
-       */
+   *
+   * @returns {object} user object
+   */
 
   static create(attr) {
     const user = new User(attr);
@@ -29,31 +29,12 @@ class User {
   }
 
   /**
-     * @returns {object} all user array
-     */
-  static getAllUsers() {
-    return User.table;
-  }
-
-  /**
-     * @param {id} user id
-     * @return {object} user with id
-     */
+   * @param {id} user id
+   * @return {object} user with id
+   */
   static getOneUser(email) {
     return User.table.find(user => user.email === email);
   }
-
-  //   /**
-  //      * @param {id} user id
-  //      * @param {object} data
-  //      */
-  //   static update(id, data) {
-  //     const user = this.getOne(id);
-  //     const index = User.table.indexOf(user);
-  //     User.table[index].status = data.status || user.status;
-  //     User.table[index].updatedAt = new Date();
-  //     return User.table[index];
-  //   }
 }
 User.table = db.users;
 User.count = db.users.length;

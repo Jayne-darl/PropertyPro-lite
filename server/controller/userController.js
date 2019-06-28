@@ -49,7 +49,7 @@ class User {
       if (!comparePass) {
         return clientError(res, 422, 'status', 'error', 'message', 'The password you provided is incorrect');
       }
-      const token = Auth.generateToken(user);
+      const token = Auth.generateToken({ user });
       user.token = token;
       return successResponse(res, 200, user);
     } catch (err) {
