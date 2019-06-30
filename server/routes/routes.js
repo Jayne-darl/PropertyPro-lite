@@ -12,5 +12,6 @@ router.use(express.json());
 router.post('/auth/create', Validator.validateSignUpDetails, userController.create);
 router.post('/auth/login', Validator.validateLoginDetails, userController.login);
 router.post('/property', Auth.verifyToken, cloudinaryConfig, multerUploads, propertyController.postAdvert);
+router.patch('/property/:id', Auth.verifyToken, cloudinaryConfig, multerUploads, propertyController.updateAdvert);
 
 export default router;
