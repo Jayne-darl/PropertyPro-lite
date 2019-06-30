@@ -20,7 +20,7 @@ const imageUpload = (req) => {
   return uploader
     .upload(file)
     .then(result => result.url)
-    .catch(err => console.log(err));
+    .catch(err => err);
 };
 
 export { multerUploads, imageUpload };

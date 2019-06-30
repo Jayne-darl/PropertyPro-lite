@@ -396,6 +396,7 @@ describe('Property', () => {
         .post('/api/v1/property')
         .set('Authorization', `Bearer ${token}`)
         .field({
+          status: 'available',
           price: '20000',
           state: 'Abuja',
           city: 'Lugbe',
@@ -465,6 +466,72 @@ describe('Property', () => {
           res.body.should.have.property('error');
           res.body.should.have.property('status');
           done(err);
+        });
+    });
+  });
+
+  /**
+  * Patch Advert details
+  */
+  describe('/PATCH/property/:id', () => {
+    it('should return an updated property', (done) => {
+      Chai.request(app)
+        .patch('/api/v1/property/2')
+        .set('Authorization', `Bearer ${token}`)
+        .field({
+          // state: 'Abuja',
+          // city: 'Lugbe',
+          // address: '4 Federal Housing',
+        })
+        .end((err, res) => {
+          if (err) return done(err);
+          res.should.have.status(200);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('data');
+          res.body.should.have.property('status');
+          res.body.data.should.have.property('image_url');
+          done();
+        });
+    });
+    it('should not return  an invalid id type', (done) => {
+      Chai.request(app)
+        .patch('/api/v1/property/y')
+        .set('Authorization', `Bearer ${token}`)
+        .field({
+          type: 'Abuja',
+          city: 'Lugbe',
+          address: '4 Federal Housing',
+        })
+        .attach('image_url', path.join(`${__dirname}/testImage/barn.jpg`))
+        .end((err, res) => {
+          if (err) return done(err);
+          res.should.have.status(400);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('error').eql('Invalid id type');
+          done();
+        });
+    });
+    it('should not return  an invalid id type', (done) => {
+      Chai.request(app)
+        .patch('/api/v1/property/7')
+        .set('Authorization', `Bearer ${token}`)
+        .field({
+          state: 'Abuja',
+          city: 'Lugbe',
+          address: '4 Federal Housing',
+        })
+        .attach('image_url', path.join(`${__dirname}/testImage/barn.jpg`))
+        .end((err, res) => {
+          if (err) return done(err);
+          res.should.have.status(404);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('message').eql('Advert not found');
+          done();
         });
     });
   });

@@ -8,7 +8,7 @@ class Property {
   constructor(attr) {
     Property.count += 1;
     this.id = Property.count;
-    this.status = attr.status || 'available';
+    this.status = 'available';
     this.price = attr.price;
     this.state = attr.state;
     this.city = attr.city;
@@ -21,7 +21,7 @@ class Property {
 
   /**
    *
-   * @returns {object} user object
+   * @returns {object} property object
    */
 
   static create(attr) {
@@ -30,32 +30,38 @@ class Property {
     return advert;
   }
 
-  //   /**
-  //      * @returns {object} all delivery user array
-  //      */
-  //   static getAll() {
-  //     return Property.table;
-  //   }
+  // /**
+  //  * @returns {object} all property array
+  //  */
+  // static getAll() {
+  //   return Property.table;
+  // }
 
-  //   /**
-  //      * @param {id} user id
-  //      * @return {object} user with id
-  //      */
-  //   static getOne(id) {
-  //     return Property.table.find(advert => advert.id === id);
-  //   }
+  /**
+     * @param {id} property id
+     * @return {object} property with id
+     */
+  static getOne(id) {
+    return Property.table.find(advert => advert.id === id);
+  }
 
-  //   /**
-  //        * @param {id} Property id
-  //        * @param {object} data
-  //        */
-  //   static update(id, data) {
-  //     const advert = this.getOne(id);
-  //     const index = Property.table.indexOf(advert);
-  //     Property.table[index].status = data.status || advert.status;
-  //     Property.table[index].updated_at = new Date();
-  //     return Property.table[index];
-  //   }
+  /**
+      * @param {id} Property id
+      * @param {object} data
+      */
+  static update(id, data) {
+    const advert = this.getOne(id);
+    const index = Property.table.indexOf(advert);
+    Property.table[index].state = data.state || advert.state;
+    Property.table[index].city = data.city || advert.city;
+    Property.table[index].address = data.address || advert.address;
+    Property.table[index].type = data.type || advert.type;
+    Property.table[index].image_url = data.image_url || advert.image_url;
+    Property.table[index].price = data.price || advert.price;
+    Property.table[index].updated_at = new Date();
+    return Property.table[index];
+  }
+
 
   //   /**
   //  * @param {id} Property id
