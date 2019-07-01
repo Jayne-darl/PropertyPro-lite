@@ -98,6 +98,26 @@ class Property {
 
     return clientError(res, 400, ...['status', 'error', 'message', 'You are not authorize to mark this advert as sold']);
   }
+
+  /**
+  * delete an advert
+  * @params {object} req
+  * @params {object} res
+  * @returns {object} delete advert object
+  */
+  static deleteAdvert(req, res) {
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      return clientError(res, 400, ...['status', 'error', 'error', 'Invalid id type']);
+    }
+
+
+    const advert = Properties.delete(id);
+    if (!advert) {
+      return clientError(res, 404, ...['status', 'error', 'message', 'Advert not found']);
+    }
+    return successResponse(res, 200, 'Advert Successfully deleted');
+  }
 }
 
 export default Property;
