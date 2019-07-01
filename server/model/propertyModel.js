@@ -57,6 +57,18 @@ class Property {
     Property.table[index].status = 'Sold';
     return Property.table[index];
   }
+
+  /**
+ * @param {id} Property id
+ */
+  static delete(id) {
+    const propertyIndex = this.getOne(id);
+    if (propertyIndex) {
+      Property.table.splice(propertyIndex, 1);
+      return true;
+    }
+    return false;
+  }
 }
 
 Property.table = db.property;

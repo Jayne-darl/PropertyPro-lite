@@ -4,8 +4,6 @@ import Datauri from 'datauri';
 import path from 'path';
 import { uploader } from '../config/cloudinaryConfig';
 
-import { serverError } from '../helper/httpResponse';
-
 const storage = multer.memoryStorage();
 const multerUploads = multer({ storage }).single('image_url');
 const dUri = new Datauri();
