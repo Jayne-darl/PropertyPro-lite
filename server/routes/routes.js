@@ -13,5 +13,7 @@ router.post('/auth/create', Validator.validateSignUpDetails, userController.crea
 router.post('/auth/login', Validator.validateLoginDetails, userController.login);
 router.post('/property', Auth.verifyToken, cloudinaryConfig, multerUploads, propertyController.postAdvert);
 router.patch('/property/:id', Auth.verifyToken, cloudinaryConfig, multerUploads, propertyController.updateAdvert);
+router.patch('/property/:id/sold', Auth.verifyToken, propertyController.markSold);
+
 
 export default router;
