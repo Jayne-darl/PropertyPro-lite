@@ -8,7 +8,7 @@ Chai.should();
 
 Chai.use(ChaiHttp);
 
-const token = process.env.token;
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlckVtYWlsIjoib2JpQGdtYWlsLmNvbSIsImlhdCI6MTU2MjAwNTk5OSwiZXhwIjoxNTYyNjEwNzk5fQ.2AdT2o4EKQY3VkzqfC9IoSBPCALj0amjagT2vEkQPSY';
 
 // Index Page Test
 describe('Index', () => {
@@ -54,13 +54,12 @@ describe('user', () => {
         .send(user)
         .end((err, res) => {
           if (err) done(err);
-          console.log(token);
           res.should.have.status(201);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('data');
           res.body.should.have.property('status');
-          // res.body.data.should.have.property('token');
+          res.body.data.should.have.property('token');
           done();
         });
     });
