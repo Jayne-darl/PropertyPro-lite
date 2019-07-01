@@ -18,7 +18,7 @@ class User {
       } = req.body;
       let { password } = req.body;
       const user = Users.getOneUser(req.body.email);
-      if (user) { return clientError(res, 403, 'status', 'error', 'error', 'Action Forbidden. User already exist'); }
+      if (user) { return clientError(res, 403, ...['status', 'error', 'error', 'Action Forbidden. User already exist']); }
       password = await Helper.hashPassword(password);
       const details = Users.create({
         email, first_name, last_name, password, phone_number, address,
@@ -43,11 +43,11 @@ class User {
       const { email, password } = req.body;
       const user = Users.getOneUser(email);
       if (!user) {
-        return clientError(res, 404, 'status', 'error', 'message', 'User not found');
+        return clientError(res, 404, ...['status', 'error', 'message', 'User not found']);
       }
       const comparePass = await Helper.comparePassword(user.password, password);
       if (!comparePass) {
-        return clientError(res, 422, 'status', 'error', 'message', 'The password you provided is incorrect');
+        return clientError(res, 422, ...['status', 'error', 'message', 'The password you provided is incorrect']);
       }
       const token = Auth.generateToken({ user });
       user.token = token;

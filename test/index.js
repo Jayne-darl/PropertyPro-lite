@@ -9,6 +9,7 @@ Chai.should();
 Chai.use(ChaiHttp);
 
 let token;
+// let otherToken;
 
 // Index Page Test
 describe('Index', () => {
@@ -16,18 +17,20 @@ describe('Index', () => {
     Chai.request(app)
       .get('/')
       .end((err, res) => {
+        if (err) done(err);
         res.should.have.status(200);
         res.body.message.should.eql('Welcome to PropertyPro-lite');
-        done(err);
+        done();
       });
   });
   it('should inform the user on non-existing endpoint', (done) => {
     Chai.request(app)
       .get('/goat')
       .end((err, res) => {
+        if (err) done(err);
         res.should.have.status(404);
         res.body.message.should.eql('Sorry, such endpoint does not exist');
-        done(err);
+        done();
       });
   });
 });
@@ -51,6 +54,7 @@ describe('user', () => {
         .post('/api/v1/auth/create')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           token = res.body.data.token;
           res.should.have.status(201);
           // eslint-disable-next-line no-unused-expressions
@@ -58,7 +62,7 @@ describe('user', () => {
           res.body.should.have.property('data');
           res.body.should.have.property('status');
           res.body.data.should.have.property('token');
-          done(err);
+          done();
         });
     });
 
@@ -78,13 +82,14 @@ describe('user', () => {
         .post('/api/v1/auth/create')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(403);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('error');
           res.body.should.have.property('status');
           res.body.error.should.eql('Action Forbidden. User already exist');
-          done(err);
+          done();
         });
     });
     /**
@@ -103,13 +108,14 @@ describe('user', () => {
         .post('/api/v1/auth/create')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(400);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('message');
           res.body.should.have.property('status');
           res.body.message.should.eql('Enter a valid email');
-          done(err);
+          done();
         });
     });
 
@@ -129,13 +135,14 @@ describe('user', () => {
         .post('/api/v1/auth/create')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(400);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('message');
           res.body.should.have.property('status');
           res.body.message.should.eql('You need to include a valid first name');
-          done(err);
+          done();
         });
     });
 
@@ -155,13 +162,14 @@ describe('user', () => {
         .post('/api/v1/auth/create')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(400);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('message');
           res.body.should.have.property('status');
           res.body.message.should.eql('You need to include a valid last name');
-          done(err);
+          done();
         });
     });
 
@@ -181,6 +189,7 @@ describe('user', () => {
         .post('/api/v1/auth/create')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(400);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -189,7 +198,7 @@ describe('user', () => {
           res.body.message.should.eql(
             'You need to include password of minimum length of 8 characters',
           );
-          done(err);
+          done();
         });
     });
 
@@ -209,6 +218,7 @@ describe('user', () => {
         .post('/api/v1/auth/create')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(400);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -217,7 +227,7 @@ describe('user', () => {
           res.body.message.should.eql(
             'You need to include a valid phone number',
           );
-          done(err);
+          done();
         });
     });
 
@@ -237,6 +247,7 @@ describe('user', () => {
         .post('/api/v1/auth/create')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(400);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -261,6 +272,7 @@ describe('user', () => {
         .post('/api/v1/auth/login')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(200);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -283,6 +295,7 @@ describe('user', () => {
         .post('/api/v1/auth/login')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(404);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -305,6 +318,7 @@ describe('user', () => {
         .post('/api/v1/auth/login')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(422);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -327,6 +341,7 @@ describe('user', () => {
         .post('/api/v1/auth/login')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(400);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -349,6 +364,7 @@ describe('user', () => {
         .post('/api/v1/auth/login')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(400);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -371,6 +387,7 @@ describe('user', () => {
         .post('/api/v1/auth/login')
         .send(user)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(400);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -405,7 +422,7 @@ describe('Property', () => {
         })
         .attach('image_url', path.join(`${__dirname}/testImage/barn.jpg`))
         .end((err, res) => {
-          if (err) return done(err);
+          if (err) done(err);
           res.should.have.status(201);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -432,6 +449,7 @@ describe('Property', () => {
         .set('Authorization', '')
         .send(property)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(401);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -440,7 +458,7 @@ describe('Property', () => {
           res.body.message.should.eql(
             'Token is not provided, Please create an account',
           );
-          done(err);
+          done();
         });
     });
 
@@ -460,12 +478,13 @@ describe('Property', () => {
         .set('Authorization', '4567575676ghghjg')
         .send(property)
         .end((err, res) => {
+          if (err) done(err);
           res.should.have.status(403);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('error');
           res.body.should.have.property('status');
-          done(err);
+          done();
         });
     });
   });
@@ -474,6 +493,9 @@ describe('Property', () => {
   * Patch Advert details
   */
   describe('/PATCH/property/:id', () => {
+    /**
+     * update an advert deatils
+     */
     it('should return an updated property', (done) => {
       Chai.request(app)
         .patch('/api/v1/property/2')
@@ -484,7 +506,7 @@ describe('Property', () => {
           // address: '4 Federal Housing',
         })
         .end((err, res) => {
-          if (err) return done(err);
+          if (err) done(err);
           res.should.have.status(200);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -505,7 +527,7 @@ describe('Property', () => {
         })
         .attach('image_url', path.join(`${__dirname}/testImage/barn.jpg`))
         .end((err, res) => {
-          if (err) return done(err);
+          if (err) done(err);
           res.should.have.status(400);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
@@ -525,12 +547,237 @@ describe('Property', () => {
         })
         .attach('image_url', path.join(`${__dirname}/testImage/barn.jpg`))
         .end((err, res) => {
-          if (err) return done(err);
+          if (err) done(err);
           res.should.have.status(404);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('status');
           res.body.should.have.property('message').eql('Advert not found');
+          done();
+        });
+    });
+
+    /**
+     * update an advert status
+     */
+    it('should return a property as sold', (done) => {
+      Chai.request(app)
+        .patch('/api/v1/property/2/sold')
+        .set('Authorization', `Bearer ${token}`)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(200);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('data');
+          res.body.should.have.property('status');
+          res.body.data.should.have.property('status').eql('Sold');
+          done();
+        });
+    });
+    it('should return error for a property posted by another person', (done) => {
+      Chai.request(app)
+        .patch('/api/v1/property/1/sold')
+        .set('Authorization', `Bearer ${token}`)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(400);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('message').eql('You are not authorize to mark this advert as sold');
+          done();
+        });
+    });
+    it('should not return  an invalid id type', (done) => {
+      Chai.request(app)
+        .patch('/api/v1/property/y/sold')
+        .set('Authorization', `Bearer ${token}`)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(400);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('error').eql('Invalid id type');
+          done();
+        });
+    });
+    it('should return not found for unavialable property', (done) => {
+      Chai.request(app)
+        .patch('/api/v1/property/6/sold')
+        .set('Authorization', `Bearer ${token}`)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(404);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status').eql('error');
+          res.body.should.have.property('message').eql('Advert not found');
+          done();
+        });
+    });
+  });
+
+  /**
+   * Delete a property advert
+   */
+  describe('/DELETE/property/:id', () => {
+    it('should not return  an invalid id type', (done) => {
+      Chai.request(app)
+        .delete('/api/v1/property/y')
+        .set('Authorization', `Bearer ${token}`)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(400);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('error').eql('Invalid id type');
+          done();
+        });
+    });
+    it('should return not found for unavialable property', (done) => {
+      Chai.request(app)
+        .delete('/api/v1/property/6')
+        .set('Authorization', `Bearer ${token}`)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(404);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('message');
+          done();
+        });
+    });
+    it('should delete a property', (done) => {
+      Chai.request(app)
+        .delete('/api/v1/property/2')
+        .set('Authorization', `Bearer ${token}`)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(200);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('data').eql('Advert Successfully deleted');
+          res.body.should.have.property('status');
+          done();
+        });
+    });
+  });
+
+  /**
+  * Get all advert
+  */
+  describe('/GET/property/', () => {
+    it('should return all property', (done) => {
+      Chai.request(app)
+        .get('/api/v1/property')
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(200);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('data');
+          done();
+        });
+    });
+    it('should return not found for unavialable property type', (done) => {
+      Chai.request(app)
+        .get('/api/v1/property?type=4 Bedroom')
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(404);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('error');
+          done();
+        });
+    });
+    it('should return all property of same type', (done) => {
+      Chai.request(app)
+        .get('/api/v1/property?type=3 Bedroom')
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(200);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('data');
+          res.body.data[0].should.have.property('type').eql('3 Bedroom');
+          done();
+        });
+    });
+    it('should return a property with the id', (done) => {
+      Chai.request(app)
+        .get('/api/v1/property/2')
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(200);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('data');
+          res.body.data.should.have.property('type');
+          res.body.data.should.have.property('ownerEmail');
+          res.body.data.should.have.property('ownerPhoneNumber');
+          done();
+        });
+    });
+    it('should not return  an invalid id type', (done) => {
+      Chai.request(app)
+        .get('/api/v1/property/y')
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(400);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('error').eql('Invalid id type');
+          done();
+        });
+    });
+    it('should not return  an invalid id type', (done) => {
+      Chai.request(app)
+        .get('/api/v1/property/7')
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(404);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('message').eql('Advert not found');
+          done();
+        });
+    });
+
+    /**
+     * error message test
+     */
+    it('should return an uploaded property with image error message', (done) => {
+      Chai.request(app)
+        .post('/api/v1/property')
+        .set('Authorization', `Bearer ${token}`)
+        .field({
+          status: 'available',
+          price: '20000',
+          state: 'Abuja',
+          city: 'Lugbe',
+          address: '4 Federal Housing',
+          type: '3 Bedroom',
+        })
+        .attach('image_url', path.join(`${__dirname}/testImage/localFile.zip`))
+        .end((err, res) => {
+          if (err) done(err);
+          // res.should.have.status(201);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('data');
+          res.body.should.have.property('status');
+          res.body.data.image_url.should.be.an('object');
           done();
         });
     });

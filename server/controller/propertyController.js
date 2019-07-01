@@ -1,6 +1,6 @@
 import Properties from '../model/propertyModel';
 import { serverError, clientError, successResponse } from '../helper/httpResponse';
-// import Users from './userController';
+import Users from '../model/userModel';
 import { imageUpload } from '../middleware/multerConfig';
 
 class Property {
@@ -40,6 +40,12 @@ class Property {
     }
   }
 
+  /**
+  * updated details an advert
+  * @params {object} req
+  * @params {object} res
+  * @returns {object} updated advert object
+  */
   static async updateAdvert(req, res) {
     try {
       if (req.file) {
@@ -54,15 +60,43 @@ class Property {
       if (!advert) {
         return clientError(res, 404, ...['status', 'error', 'message', 'Advert not found']);
       }
-
-      const id = Number(req.params.id);
-      const updatedAdvert = Properties.update(
-        id, req.body,
-      );
-      return successResponse(res, 200, updatedAdvert);
+      if (advert.owner === req.user.id) {
+        const id = Number(req.params.id);
+        const updatedAdvert = Properties.update(
+          id, req.body,
+        );
+        return successResponse(res, 200, updatedAdvert);
+      }
+      return clientError(res, 400, ...['status', 'error', 'message', 'You are not authorize to update this advert']);
     } catch (err) {
       return serverError(res);
     }
+  }
+
+  /**
+  * mark an advert as sold
+  * @params {object} req
+  * @params {object} res
+  * @returns {object} updated advert object
+  */
+  static markSold(req, res) {
+    if (isNaN(req.params.id)) {
+      return clientError(res, 400, ...['status', 'error', 'error', 'Invalid id type']);
+    }
+    const advert = Properties.getOne(Number(req.params.id));
+    if (!advert) {
+      return clientError(res, 404, ...['status', 'error', 'message', 'Advert not found']);
+    }
+    if (advert.owner === req.user.id) {
+      const id = Number(req.params.id);
+
+      const soldProperty = Properties.sold(
+        id,
+      );
+      return successResponse(res, 200, soldProperty);
+    }
+
+    return clientError(res, 400, ...['status', 'error', 'message', 'You are not authorize to mark this advert as sold']);
   }
 }
 

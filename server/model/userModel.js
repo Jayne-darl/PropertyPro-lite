@@ -12,7 +12,7 @@ class User {
     this.first_name = attr.first_name;
     this.last_name = attr.last_name;
     this.password = attr.password;
-    this.phonenumber = attr.phonenumber;
+    this.phone_number = attr.phone_number;
     this.address = attr.address;
     this.is_admin = attr.is_admin;
   }
@@ -29,8 +29,15 @@ class User {
   }
 
   /**
-   * @param {id} user id
-   * @return {object} user with id
+   * @returns {object} all users array
+   */
+  static getAll() {
+    return User.table;
+  }
+
+  /**
+   * @param {id} user email
+   * @return {object} user
    */
   static getOneUser(email) {
     return User.table.find(user => user.email === email);

@@ -24,15 +24,15 @@ const db = {
   property: [
     {
       id: 1,
+      owner: 2,
       status: 'available',
       price: 3000,
       state: 'Lagos',
       city: 'Surulere',
       address: '5 Irepodun Street',
-      type: '2 bedroom',
+      type: '2 Bedroom',
       image_url: 'ght',
       created_on: new Date(),
-      updated_at: '',
     },
   ],
 };

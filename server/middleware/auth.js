@@ -29,10 +29,10 @@ class Auth {
         return clientError(
           res,
           401,
-          'status',
-          res.statuscode,
-          'message',
-          'Token is not provided, Please create an account',
+          ...['status',
+            'error',
+            'message',
+            'Token is not provided, Please create an account'],
         );
       }
       const bearer = header.split(' ');
@@ -43,14 +43,14 @@ class Auth {
         return clientError(
           res,
           403,
-          'status',
-          res.statuscode,
-          'error',
-          'Unable to authenticate token',
+          ...['status',
+            'error',
+            'error',
+            'Unable to authenticate token'],
         );
       }
-      req.user = decoded.id;
-      req.adminStatus = decoded.is_admin;
+      req.user = decoded;
+      // req.adminStatus = decoded.is_admin;
       return next();
     } catch (error) {
       return clientError(res, 403, 'status', 'error', 'error', `${error}`);

@@ -40,12 +40,11 @@ class ValidateUser {
     }
 
     if (error) {
-      return clientError(res, 400, 'status', 'error', 'message', error);
+      return clientError(res, 400, ...['status', 'error', 'message', error]);
     }
 
     return next();
   }
-
 
   /**
    * @method validateLogInDetails
@@ -68,7 +67,7 @@ class ValidateUser {
       error = 'Password length must be 8 characters and above';
     }
     if (error) {
-      return clientError(res, 400, 'status', 'error', 'message', error);
+      return clientError(res, 400, ...['status', 'error', 'message', error]);
     }
     return next();
   }
