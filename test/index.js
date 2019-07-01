@@ -8,7 +8,7 @@ Chai.should();
 
 Chai.use(ChaiHttp);
 
-let token;
+const token = process.env.token;
 
 // Index Page Test
 describe('Index', () => {
@@ -54,7 +54,7 @@ describe('user', () => {
         .send(user)
         .end((err, res) => {
           if (err) done(err);
-          token = res.body.data.token;
+          console.log(token);
           res.should.have.status(201);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
