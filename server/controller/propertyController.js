@@ -155,6 +155,32 @@ class Property {
     }
     return successResponse(res, 200, advertList);
   }
+
+  /**
+*  get a advert
+* @params {object} req
+* @params {object} res
+* @returns {object} all advert
+*/
+  static getAdvert(req, res) {
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      return clientError(res, 400, ...['status', 'error', 'error', 'Invalid id type']);
+    }
+    const advert = Properties.getOne(id);
+    if (!advert) {
+      return clientError(res, 404, ...['status', 'error', 'message', 'Advert not found']);
+    }
+    const advertOwnerID = advert.owner;
+
+    const users = Users.getAll();
+    const advertOwner = users.find(user => user.id === advertOwnerID);
+
+    advert.ownerEmail = advertOwner.email;
+    advert.ownerPhoneNumber = advertOwner.phone_number;
+    const { owner, ...advertDetails } = advert;
+    return successResponse(res, 200, advertDetails);
+  }
 }
 
 
