@@ -46,6 +46,24 @@ class Property {
     return Property.table.find(advert => advert.id === id);
   }
 
+  /**
+   * @param {id} Property id
+   * @param {object} data
+   * @return {object} property
+   */
+  static update(id, data) {
+    const advert = this.getOne(id);
+    const index = Property.table.indexOf(advert);
+    Property.table[index].state = data.state || advert.state;
+    Property.table[index].city = data.city || advert.city;
+    Property.table[index].address = data.address || advert.address;
+    Property.table[index].type = data.type || advert.type;
+    Property.table[index].image_url = data.image_url || advert.image_url;
+    Property.table[index].price = data.price || advert.price;
+    Property.table[index].updated_at = new Date();
+    return Property.table[index];
+  }
+
 
   /**
   * @param {id} Property id

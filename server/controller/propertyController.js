@@ -118,6 +118,30 @@ class Property {
     }
     return successResponse(res, 200, 'Advert Successfully deleted');
   }
+
+  /**
+*  get all advert
+* @params {object} req
+* @params {object} res
+* @returns {object} all advert
+*/
+
+  static allAdvert(req, res) {
+    const adverts = Properties.getAll();
+    const advertList = adverts.map((advert) => {
+      const advertOwnerID = advert.owner;
+      const users = Users.getAll();
+      const advertOwner = users.find(user => user.id === advertOwnerID);
+
+      advert.ownerEmail = advertOwner.email;
+      advert.ownerPhoneNumber = advertOwner.phone_number;
+      const { owner, ...advertDetails } = advert;
+      return advertDetails;
+    });
+
+    return successResponse(res, 200, advertList);
+  }
 }
+
 
 export default Property;
