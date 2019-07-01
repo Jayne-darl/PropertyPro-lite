@@ -139,6 +139,20 @@ class Property {
       return advertDetails;
     });
 
+    /**
+     *  get all advert of same type
+     * @params {object} req
+     * @params {object} res
+     * @returns {object} all advert of same type
+     */
+    if (req.query.type) {
+      const { type } = req.query;
+      const propertyTypeResult = advertList.filter(property => property.type === type);
+      if (propertyTypeResult.length) {
+        return successResponse(res, 200, propertyTypeResult);
+      }
+      return clientError(res, 404, ...['status', 'error', 'error', `${type} property type is not available at the moment`]);
+    }
     return successResponse(res, 200, advertList);
   }
 }
