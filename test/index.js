@@ -3,7 +3,6 @@ import ChaiHttp from 'chai-http';
 import 'dotenv/config';
 import path from 'path';
 import app from '../server/index';
-import 'babel-polyfill';
 
 Chai.should();
 
