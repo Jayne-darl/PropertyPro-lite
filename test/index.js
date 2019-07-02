@@ -8,7 +8,7 @@ Chai.should();
 
 Chai.use(ChaiHttp);
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlckVtYWlsIjoib2JpQGdtYWlsLmNvbSIsImlhdCI6MTU2MjAwNTk5OSwiZXhwIjoxNTYyNjEwNzk5fQ.2AdT2o4EKQY3VkzqfC9IoSBPCALj0amjagT2vEkQPSY';
+const token = process.env.token';
 
 // Index Page Test
 describe('Index', () => {
