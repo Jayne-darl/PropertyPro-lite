@@ -6,6 +6,7 @@ import Router from './routes/routes';
 const app = express();
 
 app.use(express.json());
+const port = process.env.PORT || 3000;
 
 app.use('/api/v1', Router);
 
@@ -17,7 +18,7 @@ app.all('*', (req, res) => {
   res.status(404).json({ message: 'Sorry, such endpoint does not exist' });
 });
 
-app.listen(3000);
+app.listen(port);
 // console.log('app running on port ', 3000);
 
 export default app;
