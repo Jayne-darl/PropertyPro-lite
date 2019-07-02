@@ -19,6 +19,7 @@ A web-based platform where people create and/or search for properties for sale o
 * HTML & CSS
 * Node.js & Express.
 * Eslint.
+* Cloudinary
 * Mocha, Chai & NYC for testing.
 * Babel(To transpire down from ES6 to ES5).
 * Travis CI, and Coveralls
@@ -67,7 +68,7 @@ These are the HTTP response codes used in this project.
 | `401` | The access credentials (via the Authorization header) were missing or are invalid |
 | `403` | The credentials you provided are valid, but you are not authorized to access the resource you were looking for |
 | `404` |	Returned when the request is valid, but the resource you try to access does not exist, or is outside your scope |
-| `422` |  Unprocessable Entity, it indicates that the server understands the content type of the request entity, and the syntax of the request entity is correct, but it was unable to process the contained instructions |
+| `422` | Unprocessable Entity, it indicates that the server understands the content type of the request entity, and the syntax of the request entity is correct, but it was unable to process the contained instructions |
 | `500` |	This internal server error status code indicates that something has gone wrong on the web server |
 
 ## API Endpoints
@@ -91,8 +92,10 @@ https://jayne-darl.github.io/PropertyPro-lite/UI/index.html
 https://www.pivotaltracker.com/n/projects/2355130
 
 ## The API Endpints are hosted on heroku
+https://propertypro-lite-app.herokuapp.com/
 
 ## The API Endpoints are documented on Apiary
+https://propertyprolite3.docs.apiary.io/#
 
 ## Author
 Jane U. Onwumere
