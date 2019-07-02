@@ -4,7 +4,8 @@
   "description": "A web-based platform where users can search and/or rent/buy properties",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/index.js --exec babel-node",
+    "start": "node build/app.js",
+    "start-dev": "nodemon server/index.js --exec babel-node",
     "build": "babel server -d dist",
     "test": "nyc --reporter=html --reporter=text mocha  --timeout 10000 --require @babel/register --require babel-polyfill test --exit || true",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
@@ -38,6 +39,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
     "mocha": "^6.1.4",
+    "nodemon": "^1.19.1",
     "nyc": "^14.1.1"
   },
   "dependencies": {
@@ -48,7 +50,6 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "multer": "^1.4.1",
-    "nodemon": "^1.19.1"
+    "multer": "^1.4.1"
   }
 }
