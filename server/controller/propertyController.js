@@ -1,6 +1,6 @@
-import Properties from '../model/propertyModel';
+import Properties from '../model/UsingJSObject/propertyModel';
 import { serverError, clientError, successResponse } from '../helper/httpResponse';
-import Users from '../model/userModel';
+import Users from '../model/UsingJSObject/userModel';
 import { imageUpload } from '../middleware/multerConfig';
 
 class Property {

@@ -1,4 +1,4 @@
-import Users from '../model/userModel';
+import Users from '../model/UsingJSObject/userModel';
 import Helper from '../helper/helper';
 import { serverError, clientError, successResponse } from '../helper/httpResponse';
 import Auth from '../middleware/auth';
