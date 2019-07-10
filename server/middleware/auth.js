@@ -10,7 +10,7 @@ class Auth {
    * @returns {string} token
    */
   static generateToken(payload) {
-    const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '7d' });
+    const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '70d' });
     return token;
   }
 
