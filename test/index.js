@@ -8,8 +8,8 @@ Chai.should();
 
 Chai.use(ChaiHttp);
 
-
 const { token } = process.env;
+
 
 // Index Page Test
 describe('Index', () => {
