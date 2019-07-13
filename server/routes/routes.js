@@ -16,7 +16,7 @@ router.patch('/property/:id', Auth.verifyToken, cloudinaryConfig, multerUploads,
 router.patch('/property/:id/sold', Auth.verifyToken, Validator.validateIdParameter, propertyController.markSold);
 router.get('/property/', propertyController.allAdvert);
 router.get('/property/:id', Validator.validateIdParameter, propertyController.getAdvert);
-// router.delete('/property/:id', Auth.verifyToken, Validator.validateIdParameter, propertyController.deleteAdvert);
+router.delete('/property/:id', Auth.verifyToken, Validator.validateIdParameter, propertyController.deleteAdvert);
 
 
 export default router;

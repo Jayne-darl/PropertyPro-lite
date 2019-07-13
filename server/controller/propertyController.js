@@ -162,5 +162,31 @@ class Property {
       });
     }
   }
+
+  /**
+ * delete an advert
+ * @params {object} req
+ * @params {object} res
+ * @returns {object} delete advert object
+ */
+  static async deleteAdvert(req, res) {
+    try {
+      const findOneQuery = `SELECT * FROM property WHERE id = $1 AND owner ='${
+        req.user.id
+      }'`;
+      const deleteAdvertQuery = 'DELETE FROM property WHERE id=$1 returning *';
+      const { rows } = await db.query(findOneQuery, [req.params.id]);
+      if (!rows[0]) {
+        return clientError(res, 404, ...['status', 'error', 'message', 'Advert not found']);
+      }
+      const values = [
+        req.params.id,
+      ];
+      await db.query(deleteAdvertQuery, values);
+      return successResponse(res, 200, 'Advert Successfully deleted');
+    } catch (error) {
+      return serverError(res);
+    }
+  }
 }
 export default Property;
