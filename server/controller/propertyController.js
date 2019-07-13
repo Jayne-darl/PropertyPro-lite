@@ -107,5 +107,38 @@ class Property {
       return serverError(res);
     }
   }
+  /**
+*  get all advert
+* @params {object} req
+* @params {object} res
+* @returns {object} all advert
+*/
+
+  static async allAdvert(req, res) {
+    const findAllQuery = 'SELECT  A. *, B.id AS owner, B.email AS ownerEmail, B.phone_number AS ownerPhoneNumber FROM property A INNER JOIN users B on A.owner=B.id';
+    try {
+      const { rows, rowCount } = await db.query(findAllQuery);
+      if (rowCount === 0) {
+        return clientError(res, 404, ...['status', 'error', 'message', 'Advert not found']);
+      }
+      /**
+  *  get all advert of same type
+  * @params {object} req
+  * @params {object} res
+  * @returns {object} all advert of same type
+  */
+      if (req.query.type) {
+        const { type } = req.query;
+        const propertyTypeResult = rows.filter(property => property.type === type);
+        if (propertyTypeResult.length) {
+          return successResponse(res, 200, propertyTypeResult);
+        }
+        return clientError(res, 404, ...['status', 'error', 'error', `${type} property type is not available at the moment`]);
+      }
+      return successResponse(res, 200, rows);
+    } catch (error) {
+      return serverError(res);
+    }
+  }
 }
 export default Property;
