@@ -97,5 +97,13 @@ class ValidateUser {
 
     return next();
   }
+
+  static validateIdParameter(req, res, next) {
+    const { id } = req.params;
+    if (!Number(id)) {
+      return clientError(res, 400, ...['status', 'error', 'message', 'Id must be a number']);
+    }
+    return next();
+  }
 }
 export default ValidateUser;
