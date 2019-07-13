@@ -71,5 +71,31 @@ class ValidateUser {
     }
     return next();
   }
+
+  static validatePropertyPostFields(req, res, next) {
+    const {
+      price, state, city, address, type,
+    } = req.body;
+    let error;
+
+    if (price === '' || !Number(price)) {
+      error = 'Ensure price field is filled and with numeric characters';
+    } else if (state === '') {
+      error = 'Ensure state field  is filled and with filled with alphabetical characters';
+      // eslint-disable-next-line camelcase
+    } else if (city === '') {
+      error = 'Ensure city field and with filled with alphabetical characters';
+    } else if (address === '') {
+      error = 'Ensure address field and with filled with alphabetical characters';
+      // eslint-disable-next-line camelcase
+    } else if (type === '') {
+      error = 'Ensure type field is not empty';
+    }
+    if (error) {
+      return clientError(res, 400, ...['status', 'error', 'message', error]);
+    }
+
+    return next();
+  }
 }
 export default ValidateUser;
