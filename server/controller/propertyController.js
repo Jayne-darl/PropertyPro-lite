@@ -79,5 +79,33 @@ class Property {
       return serverError(res);
     }
   }
+
+  /**
+ * mark an advert as sold
+ * @params {object} req
+ * @params {object} res
+ * @returns {object} updated advert object
+ */
+  static async markSold(req, res) {
+    try {
+      const findOneQuery = `SELECT * FROM property WHERE id = $1 AND owner ='${
+        req.user.id
+      }'`;
+      const updateQueryStatus = 'UPDATE property SET status=$1, updated_at=$2 WHERE id=$3 returning *';
+      const { rows } = await db.query(findOneQuery, [req.params.id]);
+      if (!rows[0]) {
+        return clientError(res, 404, ...['status', 'error', 'message', 'You are not authorize to mark this advert as sold']);
+      }
+      const values = [
+        req.body.status = 'Sold',
+        new Date(),
+        req.params.id,
+      ];
+      const updatedSold = await db.query(updateQueryStatus, values);
+      return successResponse(res, 200, updatedSold.rows[0]);
+    } catch (error) {
+      return serverError(res);
+    }
+  }
 }
 export default Property;

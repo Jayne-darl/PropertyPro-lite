@@ -13,7 +13,7 @@ router.post('/auth/create', Validator.validateSignUpDetails, userController.crea
 router.post('/auth/login', Validator.validateLoginDetails, userController.login);
 router.post('/property', Auth.verifyToken, cloudinaryConfig, multerUploads, Validator.validatePropertyPostFields, propertyController.postAdvert);
 router.patch('/property/:id', Auth.verifyToken, cloudinaryConfig, multerUploads, Validator.validateIdParameter, propertyController.updateAdvert);
-// router.patch('/property/:id/sold', Auth.verifyToken, Validator.validateIdParameter, propertyController.markSold);
+router.patch('/property/:id/sold', Auth.verifyToken, Validator.validateIdParameter, propertyController.markSold);
 // router.delete('/property/:id', Auth.verifyToken, Validator.validateIdParameter, propertyController.deleteAdvert);
 // router.get('/property/', propertyController.allAdvert);
 // router.get('/property/:id', Validator.validateIdParameter, propertyController.getAdvert);
