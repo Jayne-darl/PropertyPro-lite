@@ -3,12 +3,13 @@ import ChaiHttp from 'chai-http';
 import 'dotenv/config';
 import path from 'path';
 import app from '../server/index';
+import db from '../server/model/dbConnection';
 
 Chai.should();
 
 Chai.use(ChaiHttp);
 
-const { token } = process.env;
+let token;
 
 
 // Index Page Test
@@ -20,6 +21,16 @@ describe('Index', () => {
         if (err) done(err);
         res.should.have.status(200);
         res.body.message.should.eql('Welcome to PropertyPro-lite');
+        done();
+      });
+  });
+  it('should welcome a user', (done) => {
+    Chai.request(app)
+      .get('/api/v1')
+      .end((err, res) => {
+        if (err) done(err);
+        res.should.have.status(200);
+        res.body.message.should.eql('Welcome to PropertyPro-lite API Endpoints');
         done();
       });
   });
@@ -37,6 +48,21 @@ describe('Index', () => {
 
 // User parent block
 describe('user', () => {
+  before(async () => {
+    try {
+      await db.query(
+        'TRUNCATE users CASCADE; ALTER SEQUENCE users_id_seq RESTART WITH 1;',
+      );
+      await db.query(
+        'TRUNCATE property; ALTER SEQUENCE property_id_seq RESTART WITH 1;',
+      );
+    } catch (error) {
+      // console.log(error);
+    }
+  });
+  afterEach((done) => {
+    done();
+  });
   /**
    * Test the /POST route for create an account
    */
@@ -271,6 +297,7 @@ describe('user', () => {
         .post('/api/v1/auth/login')
         .send(user)
         .end((err, res) => {
+          token = res.body.data.token;
           if (err) done(err);
           res.should.have.status(200);
           // eslint-disable-next-line no-unused-expressions
@@ -403,6 +430,15 @@ describe('user', () => {
 
 // Property Controller
 describe('Property', () => {
+  before(async () => {
+    try {
+      await db.query(
+        'TRUNCATE property; ALTER SEQUENCE property_id_seq RESTART WITH 1;',
+      );
+    } catch (error) {
+      // console.log(error);
+    }
+  });
   /**
    * Post Advert
    */
@@ -413,7 +449,7 @@ describe('Property', () => {
         .set('Authorization', `Bearer ${token}`)
         .field({
           status: 'available',
-          price: '20000',
+          price: 20000,
           state: 'Abuja',
           city: 'Lugbe',
           address: '4 Federal Housing',
@@ -427,7 +463,7 @@ describe('Property', () => {
           res.should.be.json;
           res.body.should.have.property('data');
           res.body.should.have.property('status');
-          res.body.data.should.have.property('image_url');
+          // res.body.data.should.have.property('image_url');
           done();
         });
     });
@@ -486,6 +522,116 @@ describe('Property', () => {
           done();
         });
     });
+    it('should not upload a property with an empty field', (done) => {
+      const property = {
+        price: '',
+        state: 'aba',
+        city: 'Lugbe',
+        address: '4 Federal Housing',
+        type: '3 Bedroom',
+      };
+      Chai.request(app)
+        .post('/api/v1/property')
+        .set('Authorization', `Bearer ${token}`)
+        .send(property)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(400);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('message').eql('Ensure price field is filled and with numeric characters');
+          res.body.should.have.property('status');
+          done();
+        });
+    });
+    it('should not upload a property with an empty field', (done) => {
+      const property = {
+        price: '20000',
+        state: '',
+        city: 'Lugbe',
+        address: '4 Federal Housing',
+        type: '3 Bedroom',
+      };
+      Chai.request(app)
+        .post('/api/v1/property')
+        .set('Authorization', `Bearer ${token}`)
+        .send(property)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(400);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('message').eql('Ensure state field  is filled and with filled with alphabetical characters');
+          res.body.should.have.property('status');
+          done();
+        });
+    });
+    it('should not upload a property with an empty field', (done) => {
+      const property = {
+        price: '20000',
+        state: 'aba',
+        city: '',
+        address: '4 Federal Housing',
+        type: '3 Bedroom',
+      };
+      Chai.request(app)
+        .post('/api/v1/property')
+        .set('Authorization', `Bearer ${token}`)
+        .send(property)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(400);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('message').eql('Ensure city field and with filled with alphabetical characters');
+          res.body.should.have.property('status');
+          done();
+        });
+    });
+    it('should not upload a property with an empty field', (done) => {
+      const property = {
+        price: '20000',
+        state: 'aba',
+        city: 'lugbe',
+        address: '',
+        type: '3 Bedroom',
+      };
+      Chai.request(app)
+        .post('/api/v1/property')
+        .set('Authorization', `Bearer ${token}`)
+        .send(property)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(400);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('message').eql('Ensure address field and with filled with alphabetical characters');
+          res.body.should.have.property('status');
+          done();
+        });
+    });
+    it('should not upload a property with an empty field', (done) => {
+      const property = {
+        price: '20000',
+        state: 'aba',
+        city: 'lugbe',
+        address: '2 akerele street',
+        type: '',
+      };
+      Chai.request(app)
+        .post('/api/v1/property')
+        .set('Authorization', `Bearer ${token}`)
+        .send(property)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(400);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('message').eql('Ensure type field is not empty');
+          res.body.should.have.property('status');
+          done();
+        });
+    });
   });
 
   /**
@@ -497,7 +643,7 @@ describe('Property', () => {
      */
     it('should return an updated property', (done) => {
       Chai.request(app)
-        .patch('/api/v1/property/2')
+        .patch('/api/v1/property/1')
         .set('Authorization', `Bearer ${token}`)
         .field({
           // state: 'Abuja',
@@ -531,13 +677,13 @@ describe('Property', () => {
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('status');
-          res.body.should.have.property('error').eql('Invalid id type');
+          res.body.should.have.property('message').eql('Id must be a number');
           done();
         });
     });
-    it('should not return  an invalid id type', (done) => {
+    it('should not return  a non existing property id', (done) => {
       Chai.request(app)
-        .patch('/api/v1/property/7')
+        .patch('/api/v1/property/17')
         .set('Authorization', `Bearer ${token}`)
         .field({
           state: 'Abuja',
@@ -551,7 +697,7 @@ describe('Property', () => {
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('status');
-          res.body.should.have.property('message').eql('Advert not found');
+          res.body.should.have.property('message').eql('You have not created any advert with this id');
           done();
         });
     });
@@ -561,7 +707,7 @@ describe('Property', () => {
      */
     it('should return a property as sold', (done) => {
       Chai.request(app)
-        .patch('/api/v1/property/2/sold')
+        .patch('/api/v1/property/1/sold')
         .set('Authorization', `Bearer ${token}`)
         .end((err, res) => {
           if (err) done(err);
@@ -576,11 +722,11 @@ describe('Property', () => {
     });
     it('should return error for a property posted by another person', (done) => {
       Chai.request(app)
-        .patch('/api/v1/property/1/sold')
+        .patch('/api/v1/property/5/sold')
         .set('Authorization', `Bearer ${token}`)
         .end((err, res) => {
           if (err) done(err);
-          res.should.have.status(400);
+          res.should.have.status(404);
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('status');
@@ -598,13 +744,13 @@ describe('Property', () => {
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('status');
-          res.body.should.have.property('error').eql('Invalid id type');
+          res.body.should.have.property('message').eql('Id must be a number');
           done();
         });
     });
     it('should return not found for unavialable property', (done) => {
       Chai.request(app)
-        .patch('/api/v1/property/6/sold')
+        .patch('/api/v1/property/5/sold')
         .set('Authorization', `Bearer ${token}`)
         .end((err, res) => {
           if (err) done(err);
@@ -612,59 +758,12 @@ describe('Property', () => {
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('status').eql('error');
-          res.body.should.have.property('message').eql('Advert not found');
+          res.body.should.have.property('message').eql('You are not authorize to mark this advert as sold');
           done();
         });
     });
   });
 
-  /**
-   * Delete a property advert
-   */
-  describe('/DELETE/property/:id', () => {
-    it('should not return  an invalid id type', (done) => {
-      Chai.request(app)
-        .delete('/api/v1/property/y')
-        .set('Authorization', `Bearer ${token}`)
-        .end((err, res) => {
-          if (err) done(err);
-          res.should.have.status(400);
-          // eslint-disable-next-line no-unused-expressions
-          res.should.be.json;
-          res.body.should.have.property('status');
-          res.body.should.have.property('error').eql('Invalid id type');
-          done();
-        });
-    });
-    it('should return not found for unavialable property', (done) => {
-      Chai.request(app)
-        .delete('/api/v1/property/6')
-        .set('Authorization', `Bearer ${token}`)
-        .end((err, res) => {
-          if (err) done(err);
-          res.should.have.status(404);
-          // eslint-disable-next-line no-unused-expressions
-          res.should.be.json;
-          res.body.should.have.property('status');
-          res.body.should.have.property('message');
-          done();
-        });
-    });
-    it('should delete a property', (done) => {
-      Chai.request(app)
-        .delete('/api/v1/property/2')
-        .set('Authorization', `Bearer ${token}`)
-        .end((err, res) => {
-          if (err) done(err);
-          res.should.have.status(200);
-          // eslint-disable-next-line no-unused-expressions
-          res.should.be.json;
-          res.body.should.have.property('data').eql('Advert Successfully deleted');
-          res.body.should.have.property('status');
-          done();
-        });
-    });
-  });
 
   /**
   * Get all advert
@@ -712,7 +811,7 @@ describe('Property', () => {
     });
     it('should return a property with the id', (done) => {
       Chai.request(app)
-        .get('/api/v1/property/2')
+        .get('/api/v1/property/1')
         .end((err, res) => {
           if (err) done(err);
           res.should.have.status(200);
@@ -721,8 +820,8 @@ describe('Property', () => {
           res.body.should.have.property('status');
           res.body.should.have.property('data');
           res.body.data.should.have.property('type');
-          res.body.data.should.have.property('ownerEmail');
-          res.body.data.should.have.property('ownerPhoneNumber');
+          // res.body.data.should.have.property('ownerEmail');
+          // res.body.data.should.have.property('ownerPhoneNumber');
           done();
         });
     });
@@ -735,13 +834,13 @@ describe('Property', () => {
           // eslint-disable-next-line no-unused-expressions
           res.should.be.json;
           res.body.should.have.property('status');
-          res.body.should.have.property('error').eql('Invalid id type');
+          res.body.should.have.property('message').eql('Id must be a number');
           done();
         });
     });
     it('should not return  an invalid id type', (done) => {
       Chai.request(app)
-        .get('/api/v1/property/7')
+        .get('/api/v1/property/17')
         .end((err, res) => {
           if (err) done(err);
           res.should.have.status(404);
@@ -776,7 +875,54 @@ describe('Property', () => {
           res.should.be.json;
           res.body.should.have.property('data');
           res.body.should.have.property('status');
-          res.body.data.image_url.should.be.an('object');
+          // res.body.data.image_url.should.be.an('object');
+          done();
+        });
+    });
+  });
+  /**
+ * Delete a property advert
+ */
+  describe('/DELETE/property/:id', () => {
+    it('should not return  an invalid id type', (done) => {
+      Chai.request(app)
+        .delete('/api/v1/property/y')
+        .set('Authorization', `Bearer ${token}`)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(400);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('message').eql('Id must be a number');
+          done();
+        });
+    });
+    it('should return not found for unavialable property', (done) => {
+      Chai.request(app)
+        .delete('/api/v1/property/16')
+        .set('Authorization', `Bearer ${token}`)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(404);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('status');
+          res.body.should.have.property('message');
+          done();
+        });
+    });
+    it('should delete a property', (done) => {
+      Chai.request(app)
+        .delete('/api/v1/property/1')
+        .set('Authorization', `Bearer ${token}`)
+        .end((err, res) => {
+          if (err) done(err);
+          res.should.have.status(200);
+          // eslint-disable-next-line no-unused-expressions
+          res.should.be.json;
+          res.body.should.have.property('data').eql('Advert Successfully deleted');
+          res.body.should.have.property('status');
           done();
         });
     });
