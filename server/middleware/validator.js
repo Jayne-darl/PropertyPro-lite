@@ -45,5 +45,31 @@ class ValidateUser {
 
     return next();
   }
+
+  /**
+   * @method validateLogInDetails
+   * @description Validates details of the user upon login
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @returns {object} JSON API Response
+   */
+  static validateLoginDetails(req, res, next) {
+    const {
+      // eslint-disable-next-line camelcase
+      email, password,
+    } = req.body;
+    let error;
+    if (!email || !Helper.isValidEmail(email)) {
+      error = 'The email you provided is invalid';
+    } else if (!password) {
+      error = 'You need to provide a password';
+    } else if (!/^[\s\S]{8,255}$/.test(password)) {
+      error = 'Password length must be 8 characters and above';
+    }
+    if (error) {
+      return clientError(res, 400, ...['status', 'error', 'message', error]);
+    }
+    return next();
+  }
 }
 export default ValidateUser;
