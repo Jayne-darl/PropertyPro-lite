@@ -37,6 +37,29 @@ class User {
       return serverError(res);
     }
   }
+
+  /**
+  * Login
+  * @params {object} req
+  * @params {object} res
+  * @returns {object} user object
+  */
+  static async login(req, res) {
+    const text = 'SELECT * FROM users WHERE email = $1';
+    try {
+      const { rows } = await db.query(text, [req.body.email]);
+      if (!rows[0]) {
+        return clientError(res, 404, ...['status', 'error', 'message', 'User not found']);
+      }
+      if (!Helper.comparePassword(rows[0].password, req.body.password)) {
+        return clientError(res, 422, ...['status', 'error', 'message', 'The password you provided is incorrect']);
+      }
+      const token = Auth.generateToken(rows[0]);
+      const user = rows[0];
+      user.token = token;
+      return successResponse(res, 200, user);
+    } catch (err) { return serverError(res); }
+  }
 }
 
 export default User;
