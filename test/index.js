@@ -9,7 +9,7 @@ Chai.should();
 
 Chai.use(ChaiHttp);
 
-let token;
+let { token } = process.env;
 
 
 // Index Page Test

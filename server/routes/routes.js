@@ -15,7 +15,7 @@ router.post('/property', Auth.verifyToken, cloudinaryConfig, multerUploads, Vali
 router.patch('/property/:id', Auth.verifyToken, cloudinaryConfig, multerUploads, Validator.validateIdParameter, propertyController.updateAdvert);
 router.patch('/property/:id/sold', Auth.verifyToken, Validator.validateIdParameter, propertyController.markSold);
 router.get('/property/', propertyController.allAdvert);
-// router.get('/property/:id', Validator.validateIdParameter, propertyController.getAdvert);
+router.get('/property/:id', Validator.validateIdParameter, propertyController.getAdvert);
 // router.delete('/property/:id', Auth.verifyToken, Validator.validateIdParameter, propertyController.deleteAdvert);
 
 

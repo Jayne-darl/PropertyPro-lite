@@ -140,5 +140,27 @@ class Property {
       return serverError(res);
     }
   }
+
+  /**
+*  get a advert
+* @params {object} req
+* @params {object} res
+* @returns {object} all advert
+*/
+  static async getAdvert(req, res) {
+    const text = 'SELECT  A. *, B.id AS owner, B.email AS ownerEmail, B.phone_number AS ownerPhoneNumber FROM property A INNER JOIN users B on A.owner = B.id WHERE A.id = $1';
+    try {
+      const { rows, rowCount } = await db.query(text, [req.params.id]);
+      if (rowCount === 0) {
+        return clientError(res, 404, ...['status', 'error', 'message', 'Advert not found']);
+      }
+      return successResponse(res, 200, rows[0]);
+    } catch (error) {
+      return res.status(500).json({
+        status: res.statusCode,
+        error,
+      });
+    }
+  }
 }
 export default Property;
