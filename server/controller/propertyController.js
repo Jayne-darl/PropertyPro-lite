@@ -39,5 +39,45 @@ class Property {
       return serverError(res);
     }
   }
+
+  /**
+* updated details an advert
+* @params {object} req
+* @params {object} res
+* @returns {object} updated advert object
+*/
+  static async updateAdvert(req, res) {
+    // const { id } = req.user;
+    try {
+      let imageUrl;
+      if (req.file) {
+        const fileUrl = await imageUpload(req);
+        // eslint-disable-next-line camelcase
+        imageUrl = fileUrl;
+      }
+      const findOneQuery = `SELECT * FROM property WHERE id = $1 AND owner ='${
+        req.user.id
+      }'`;
+      const updateOneQuery = 'UPDATE property SET price=$1, state=$2, city=$3, address=$4, type=$5, image_url=$6, updated_at=$7 WHERE id=$8 returning *';
+      const { rows } = await db.query(findOneQuery, [req.params.id]);
+      if (!rows[0]) {
+        return clientError(res, 404, ...['status', 'error', 'message', 'You have not created any advert with this id']);
+      }
+      const values = [
+        req.body.price || rows[0].price,
+        req.body.state || rows[0].state,
+        req.body.city || rows[0].city,
+        req.body.address || rows[0].address,
+        req.body.type || rows[0].type,
+        imageUrl || rows[0].image_url,
+        new Date(),
+        req.params.id,
+      ];
+      const updatedAdvert = await db.query(updateOneQuery, values);
+      return successResponse(res, 200, updatedAdvert.rows[0]);
+    } catch (err) {
+      return serverError(res);
+    }
+  }
 }
 export default Property;
