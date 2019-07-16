@@ -12,6 +12,26 @@ chai.use(chaiHttp);
 
 const { token } = process.env;
 describe('POST /api/v1/property', () => {
+  it('should  not post a new property with wrong image file', (done) => {
+    request(app)
+      .post('/api/v1/property')
+      .set('Accept', 'application/json')
+      .set('Authorization', `Bearer ${token}`)
+      .field({
+        status: 'available',
+        price: 20000,
+        state: 'Abuja',
+        city: 'Lugbe',
+        address: '4 Federal Housing',
+        type: '3 Bedroom',
+      })
+      .attach('image_url', path.join(`${__dirname}/testImage/localFile.zip`))
+      .end((err, res) => {
+        expect(res.body).to.include.key('status');
+        expect(res.body).to.include.key('data');
+        done();
+      });
+  });
   it('should post a new property', (done) => {
     request(app)
       .post('/api/v1/property')
@@ -29,26 +49,6 @@ describe('POST /api/v1/property', () => {
       .end((err, res) => {
         expect(res.status).to.be.equal(201);
         expect(res).to.have.status('201');
-        expect(res.body).to.include.key('status');
-        expect(res.body).to.include.key('data');
-        done();
-      });
-  });
-  it('should  not post a new property with wrong image file', (done) => {
-    request(app)
-      .post('/api/v1/property')
-      .set('Accept', 'application/json')
-      .set('Authorization', `Bearer ${token}`)
-      .field({
-        status: 'available',
-        price: 20000,
-        state: 'Abuja',
-        city: 'Lugbe',
-        address: '4 Federal Housing',
-        type: '3 Bedroom',
-      })
-      .attach('image_url', path.join(`${__dirname}/testImage/localFile.zip`))
-      .end((err, res) => {
         expect(res.body).to.include.key('status');
         expect(res.body).to.include.key('data');
         done();
