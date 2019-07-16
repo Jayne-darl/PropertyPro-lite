@@ -34,7 +34,10 @@ class User {
       if (error.routine === '_bt_check_unique') {
         return clientError(res, 403, ...['status', 'error', 'error', 'Action Forbidden. User already exist']);
       }
-      return serverError(res);
+      return res.status(500).json({
+        status: res.statusCode,
+        error,
+      });
     }
   }
 
