@@ -39,16 +39,6 @@ class Auth {
       const token = bearer[1];
 
       const decoded = jwt.verify(token, process.env.SECRET);
-      if (!decoded) {
-        return clientError(
-          res,
-          403,
-          ...['status',
-            'error',
-            'error',
-            'Unable to authenticate token'],
-        );
-      }
       req.user = decoded;
       // req.adminStatus = decoded.is_admin;
       return next();
