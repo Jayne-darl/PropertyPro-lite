@@ -33,10 +33,12 @@ class Property {
         imageUrl,
       ];
       const { rows } = await db.query(text, values);
-      // const advert = rows[0];
-      return successResponse(res, 201, rows);
+      return successResponse(res, 201, rows[0]);
     } catch (err) {
-      return serverError(res);
+      return res.status(500).json({
+        status: res.statusCode,
+        error: err,
+      });
     }
   }
 
