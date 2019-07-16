@@ -54,7 +54,6 @@ describe('POST /api/v1/property', () => {
         done();
       });
   });
-
   it('should return an error if invalid token is provided', (done) => {
     request(app)
       .post('/api/v1/property')
