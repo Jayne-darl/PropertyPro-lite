@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL || 'postgres://applefix:@Ja14071994nE@localhost:5432/propertyprolite',
+  connectionString: process.env.DATABASE_URL,
 });
 
 export default {
