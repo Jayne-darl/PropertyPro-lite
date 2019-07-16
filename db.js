@@ -14,7 +14,7 @@ pool.on('connect', () => {
 
 const createUsersTable = () => {
   const queryText = `CREATE TABLE IF NOT EXISTS
-      Users(
+      users(
         id SERIAL PRIMARY KEY,
         first_name VARCHAR(50) NOT NULL,
         last_name VARCHAR(50) NOT NULL,
@@ -41,7 +41,7 @@ const createUsersTable = () => {
 
 const createPropertyTable = () => {
   const queryText = `CREATE TABLE IF NOT EXISTS
-      Property(
+      property(
         id SERIAL PRIMARY KEY,
         owner integer REFERENCES users,
         status VARCHAR DEFAULT 'available',
