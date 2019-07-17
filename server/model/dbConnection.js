@@ -29,7 +29,7 @@ export default {
 };
 
 // Connect to socket.io
-const server = require('http').createServer();
+const server = require('https').createServer();
 const io = require('socket.io')(server);
 
 console.log('connected');
