@@ -22,7 +22,7 @@ before(async () => {
   }
 });
 
-const signup = '/api/v1/auth/create';
+const signup = '/api/v1/auth/signup';
 // let token;
 
 describe('POST /api/v1/auth/create', () => {
@@ -145,7 +145,7 @@ describe('POST /api/v1/auth/create', () => {
   });
 });
 
-const login = '/api/v1/auth/login';
+const login = '/api/v1/auth/signin';
 
 describe('POST /api/v1/auth/login ', () => {
   it('should login a user', (done) => {

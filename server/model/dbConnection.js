@@ -27,3 +27,12 @@ export default {
     });
   },
 };
+
+// Connect to socket.io
+const server = require('https').createServer();
+const io = require('socket.io')(server);
+
+console.log('connected');
+io.on('disconnect', () => {
+  console.log('Disconnected');
+});

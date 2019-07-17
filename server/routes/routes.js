@@ -9,8 +9,8 @@ import propertyController from '../controller/propertyController';
 const router = express.Router();
 router.use(express.json());
 
-router.post('/auth/create', Validator.validateSignUpDetails, userController.create);
-router.post('/auth/login', Validator.validateLoginDetails, userController.login);
+router.post('/auth/signup', Validator.validateSignUpDetails, userController.create);
+router.post('/auth/signin', Validator.validateLoginDetails, userController.login);
 router.post('/property', Auth.verifyToken, cloudinaryConfig, multerUploads, Validator.validatePropertyPostFields, propertyController.postAdvert);
 router.patch('/property/:id', Auth.verifyToken, cloudinaryConfig, multerUploads, Validator.validateIdParameter, propertyController.updateAdvert);
 router.patch('/property/:id/sold', Auth.verifyToken, Validator.validateIdParameter, propertyController.markSold);

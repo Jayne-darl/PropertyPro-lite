@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const pool = new Pool({
-  connectionString: 'postgres://xngcbvvs:6OIVBYjd1QqT9pEcT8fP96eON35pvNes@raja.db.elephantsql.com:5432/xngcbvvs',
+  connectionString: process.env.DATABASE_URL,
 });
 
 
@@ -14,7 +14,7 @@ pool.on('connect', () => {
 
 const createUsersTable = () => {
   const queryText = `CREATE TABLE IF NOT EXISTS
-      Users(
+      users(
         id SERIAL PRIMARY KEY,
         first_name VARCHAR(50) NOT NULL,
         last_name VARCHAR(50) NOT NULL,
@@ -41,7 +41,7 @@ const createUsersTable = () => {
 
 const createPropertyTable = () => {
   const queryText = `CREATE TABLE IF NOT EXISTS
-      Property(
+      property(
         id SERIAL PRIMARY KEY,
         owner integer REFERENCES users,
         status VARCHAR DEFAULT 'available',
