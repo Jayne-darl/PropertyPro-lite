@@ -17,6 +17,9 @@ before(async () => {
     await db.query(
       'TRUNCATE property; ALTER SEQUENCE property_id_seq RESTART WITH 1;',
     );
+    await db.query(
+      'TRUNCATE flag; ALTER SEQUENCE flag_id_seq RESTART WITH 1;',
+    );
   } catch (error) {
     // console.log(error);
   }

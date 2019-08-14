@@ -18,7 +18,6 @@ class Property {
         const fileUrl = await imageUpload(req);
         // eslint-disable-next-line camelcase
         imageUrl = fileUrl;
-        // console.log(fileUrl);
       }
       const text = `INSERT INTO 
       property (owner, price, state, city, address, type, image_url)
@@ -35,10 +34,7 @@ class Property {
       const { rows } = await db.query(text, values);
       return successResponse(res, 201, rows[0]);
     } catch (err) {
-      return res.status(500).json({
-        status: res.statusCode,
-        error: err,
-      });
+      return serverError(res);
     }
   }
 
@@ -158,10 +154,7 @@ class Property {
       }
       return successResponse(res, 200, rows[0]);
     } catch (error) {
-      return res.status(500).json({
-        status: res.statusCode,
-        error,
-      });
+      return serverError(res);
     }
   }
 
