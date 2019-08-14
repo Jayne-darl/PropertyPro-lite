@@ -46,6 +46,14 @@ class Auth {
       return clientError(res, 403, 'status', 'error', 'error', `${error}`);
     }
   }
+
+  static isAdmin(req, res, next) {
+    if (req.user.is_admin === false) {
+      return clientError(res, 403, ...['status', 'error', 'error', 'Access Forbidden']);
+    }
+    return next();
+  }
 }
+
 
 export default Auth;

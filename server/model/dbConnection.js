@@ -3,17 +3,18 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+const env = process.env.NODE_ENV === 'test' ? process.env.test : process.env.DATABASE_URL;
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: env,
 });
 
 export default {
   /**
-       * DB Query
-       * @param {object} req
-       * @param {object} res
-       * @returns {object} object
-       */
+   * DB Query
+   * @param {object} req
+   * @param {object} res
+   * @returns {object} object
+   */
   query(text, params) {
     return new Promise((resolve, reject) => {
       pool
@@ -28,11 +29,11 @@ export default {
   },
 };
 
-// Connect to socket.io
-const server = require('https').createServer();
-const io = require('socket.io')(server);
+// // Connect to socket.io
+// const server = require('https').createServer();
+// const io = require('socket.io')(server);
 
-console.log('connected');
-io.on('disconnect', () => {
-  console.log('Disconnected');
-});
+// console.log('connected');
+// io.on('disconnect', () => {
+//   console.log('Disconnected');
+// });

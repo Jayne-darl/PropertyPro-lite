@@ -105,5 +105,26 @@ class ValidateUser {
     }
     return next();
   }
+
+  static validateFlagFields(req, res, next) {
+    const {
+      // eslint-disable-next-line camelcase
+      property_id, name, email, reason,
+    } = req.body;
+    let error;
+    if (!Number(property_id)) {
+      error = 'Property_id must be a number';
+    } else if (name === '') {
+      error = 'Ensure name field  is filled and with filled with alphabetical characters';
+    } else if (!Helper.isValidEmail(email)) {
+      error = 'Please fill in a valid email';
+    } else if (reason === '') {
+      error = 'please fill in your resaon for flagging this order';
+    }
+    if (error) {
+      return clientError(res, 400, ...['status', 'error', 'message', error]);
+    }
+    return next();
+  }
 }
 export default ValidateUser;
